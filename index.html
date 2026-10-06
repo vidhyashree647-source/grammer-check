@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Grammar Checker & Writing Assistant</title>
+  <meta name="description" content="Professional AI writing assistant and grammar checker. Fix spelling, grammar, tone, and sentence structure instantly.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- MOBILE TOPBAR -->
+    <header class="mobile-header">
+      <div class="brand-logo">
+        <div class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+            <path d="M12 12L2.1 12.1"></path>
+            <path d="M20 12a8 8 0 1 0-8 8"></path>
+            <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+          </svg>
+        </div>
+        <span class="logo-text">Grammar<span class="gradient-text">AI</span></span>
+      </div>
+      <button id="mobile-menu-toggle" class="icon-btn" aria-label="Toggle Navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </header>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo">
+          <div class="logo-icon glowing">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <div class="brand-title-wrap">
+            <span class="logo-text">Grammar<span class="gradient-text">AI</span></span>
+            <span class="badge-v2">PRO v2.4</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-nav="home">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" data-nav="checker">
+          <span class="nav-icon">✍️</span>
+          <span class="nav-label">Grammar Checker</span>
+        </button>
+        <button class="nav-item" data-nav="assistant">
+          <span class="nav-icon">🪄</span>
+          <span class="nav-label">Writing Assistant</span>
+        </button>
+        <button class="nav-item" data-nav="history">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label">History & Stats</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="ai-status-card">
+          <div class="status-indicator">
+            <span class="pulse-dot"></span>
+            <span class="status-text">AI Engine Active</span>
+          </div>
+          <p class="status-sub">Rule Model: Local NLP v3.2</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+
+      <!-- PAGE 1: HOME / DASHBOARD -->
+      <section id="section-home" class="app-section active">
+        <div class="hero-container">
+          <div class="hero-content">
+            <div class="hero-pill">
+              <span class="sparkle-icon">✨</span> Intelligent Writing Suite
+            </div>
+            <h1 class="hero-title">
+              AI Grammar Checker
+            </h1>
+            <p class="hero-subtitle">
+              Write better. Write smarter. Write with confidence.
+            </p>
+            <p class="hero-description">
+              Instantly analyze your text for complex grammar mistakes, subtle spelling errors, punctuation oversights, and tone improvements. Designed for professionals, students, and creators.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-lg glow-on-hover" data-nav="checker">
+                <span>Start Checking</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+              <button class="btn btn-secondary btn-lg" id="btn-try-demo">
+                <span>Try Demo</span>
+                <span class="btn-badge">Instant</span>
+              </button>
+            </div>
+
+            <div class="hero-metrics">
+              <div class="metric-item">
+                <span class="metric-num">99.4%</span>
+                <span class="metric-label">Rule Accuracy</span>
+              </div>
+              <div class="metric-divider"></div>
+              <div class="metric-item">
+                <span class="metric-num">0ms</span>
+                <span class="metric-label">Latency (Client AI)</span>
+              </div>
+              <div class="metric-divider"></div>
+              <div class="metric-item">
+                <span class="metric-num">100%</span>
+                <span class="metric-label">Private & Offline</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI ILLUSTRATION (CSS / SVG SHAPES) -->
+          <div class="hero-illustration">
+            <div class="ai-orbit-container">
+              <div class="orbit-ring ring-outer"></div>
+              <div class="orbit-ring ring-inner"></div>
+              <div class="ai-core-glow"></div>
+              <div class="ai-core-card glass-panel">
+                <div class="card-header-mini">
+                  <div class="dot red"></div>
+                  <div class="dot yellow"></div>
+                  <div class="dot green"></div>
+                  <span class="mini-title">AI Scanner Live</span>
+                </div>
+                <div class="mini-text-demo">
+                  <span class="demo-correct">The report has been</span>
+                  <span class="demo-error">succesfully</span>
+                  <span class="demo-suggest">analyzed</span>.
+                </div>
+                <div class="mini-issue-tag">
+                  <span class="tag-icon">⚠️</span>
+                  <span>Spelling: "succesfully" &rarr; "successfully"</span>
+                </div>
+                <div class="mini-score-badge">Score: 98/100</div>
+              </div>
+
+              <!-- Floating Badges -->
+              <div class="floating-badge badge-1">
+                <span>✍️ Subject-Verb Agreement</span>
+              </div>
+              <div class="floating-badge badge-2">
+                <span>🔤 Typo Detection</span>
+              </div>
+              <div class="floating-badge badge-3">
+                <span>🪄 Tone Polish</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FEATURES SECTION -->
+        <div class="features-section">
+          <div class="section-header text-center">
+            <h2 class="section-title">Everything You Need for Flawless Writing</h2>
+            <p class="section-desc">Comprehensive AI tools built to catch errors and enhance readability seamlessly.</p>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card glass-card">
+              <div class="feature-icon icon-red">✍️</div>
+              <h3 class="feature-title">Grammar Correction</h3>
+              <p class="feature-text">Detects subject-verb disagreements, wrong article usage, tense mismatches, and structural sentence flaws.</p>
+              <div class="feature-footer" data-nav="checker">Run Grammar Check &rarr;</div>
+            </div>
+
+            <div class="feature-card glass-card">
+              <div class="feature-icon icon-orange">🔤</div>
+              <h3 class="feature-title">Spelling Check</h3>
+              <p class="feature-text">Catches subtle typos, commonly misspelled words, repeated words, and confusing homophone slips.</p>
+              <div class="feature-footer" data-nav="checker">Scan Spelling &rarr;</div>
+            </div>
+
+            <div class="feature-card glass-card">
+              <div class="feature-icon icon-blue">🪄</div>
+              <h3 class="feature-title">Sentence Improvement</h3>
+              <p class="feature-text">Rephrases passive sentences, wordy expressions, and awkward phrasing into clear, impactful prose.</p>
+              <div class="feature-footer" data-nav="assistant">Try Writing Assistant &rarr;</div>
+            </div>
+
+            <div class="feature-card glass-card">
+              <div class="feature-icon icon-purple">💡</div>
+              <h3 class="feature-title">Writing Suggestions</h3>
+              <p class="feature-text">Provides instant readability scoring, sentence length analysis, tone transformation, and actionable feedback.</p>
+              <div class="feature-footer" data-nav="assistant">Explore Modes &rarr;</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 2: GRAMMAR CHECKER -->
+      <section id="section-checker" class="app-section">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Grammar & Spell Checker</h1>
+            <p class="page-subtitle">Paste your draft below to perform real-time AI error diagnosis and instant auto-corrections.</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary btn-sm" id="btn-sample">
+              <span>📋 Load Sample</span>
+            </button>
+            <button class="btn btn-danger btn-sm" id="btn-clear">
+              <span>🗑️ Clear</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="checker-container">
+          <!-- LEFT COLUMN: EDITOR & ISSUES -->
+          <div class="checker-left">
+            <div class="editor-card glass-card">
+              <div class="editor-toolbar">
+                <div class="toolbar-stats">
+                  <span class="stat-badge"><strong id="cnt-words">0</strong> words</span>
+                  <span class="stat-badge"><strong id="cnt-chars">0</strong> characters</span>
+                  <span class="stat-badge"><strong id="cnt-sentences">0</strong> sentences</span>
+                  <span class="stat-badge"><strong id="cnt-read-time">0 min</strong> read</span>
+                </div>
+              </div>
+
+              <div class="editor-wrapper">
+                <textarea id="checker-input" placeholder="Type or paste your text here to analyze spelling, grammar, and style..." spellcheck="false"></textarea>
+                <div id="checker-highlight-overlay" class="editor-overlay"></div>
+              </div>
+
+              <div class="editor-footer">
+                <div class="editor-hint">
+                  <span>💡 Tip: Click "Check Grammar" or press Ctrl+Enter to trigger AI analysis.</span>
+                </div>
+                <div class="editor-actions">
+                  <button class="btn btn-primary glow-on-hover" id="btn-check">
+                    <span id="btn-check-text">✨ Check Grammar</span>
+                  </button>
+                  <button class="btn btn-success" id="btn-fix-all" disabled>
+                    <span>⚡ Fix All Errors</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- DETECTED ISSUES STREAM -->
+            <div class="issues-card glass-card">
+              <div class="issues-header">
+                <div class="issues-title-wrap">
+                  <h3 class="card-title">Detected Issues</h3>
+                  <span class="issues-count-badge" id="issues-total-count">0 issues</span>
+                </div>
+                <div class="issues-tabs" id="issues-filter-tabs">
+                  <button class="tab-btn active" data-filter="all">All</button>
+                  <button class="tab-btn filter-red" data-filter="grammar">Grammar</button>
+                  <button class="tab-btn filter-orange" data-filter="spelling">Spelling</button>
+                  <button class="tab-btn filter-blue" data-filter="suggestion">Suggestions</button>
+                </div>
+              </div>
+
+              <div id="issues-container" class="issues-list">
+                <div class="empty-state">
+                  <div class="empty-icon">🎉</div>
+                  <h4>No issues checked yet</h4>
+                  <p>Type some text above and click <strong>Check Grammar</strong> to scan for errors!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: AI ANALYSIS PANEL -->
+          <div class="checker-right">
+            <div class="analysis-panel glass-card">
+              <h3 class="card-title text-center">AI Writing Analysis</h3>
+
+              <!-- RADIAL SCORE GAUGE -->
+              <div class="score-gauge-wrap">
+                <svg class="score-ring-svg" width="160" height="160" viewBox="0 0 160 160">
+                  <circle class="ring-bg" cx="80" cy="80" r="70"></circle>
+                  <circle class="ring-progress" id="score-ring-circle" cx="80" cy="80" r="70" stroke-dasharray="440" stroke-dashoffset="440"></circle>
+                </svg>
+                <div class="score-center">
+                  <span class="score-number" id="analysis-score">100</span>
+                  <span class="score-label">Writing Score</span>
+                  <span class="score-grade" id="analysis-grade">Perfect</span>
+                </div>
+              </div>
+
+              <!-- ERROR BREAKDOWN TILES -->
+              <div class="breakdown-grid">
+                <div class="breakdown-tile tile-red">
+                  <span class="tile-num" id="stat-grammar-count">0</span>
+                  <span class="tile-label">Grammar</span>
+                </div>
+                <div class="breakdown-tile tile-orange">
+                  <span class="tile-num" id="stat-spelling-count">0</span>
+                  <span class="tile-label">Spelling</span>
+                </div>
+                <div class="breakdown-tile tile-blue">
+                  <span class="tile-num" id="stat-suggestion-count">0</span>
+                  <span class="tile-label">Suggestions</span>
+                </div>
+                <div class="breakdown-tile tile-green">
+                  <span class="tile-num" id="stat-correct-count">0</span>
+                  <span class="tile-label">Quality Score</span>
+                </div>
+              </div>
+
+              <!-- DETAILED METRIC PROGRESS BARS -->
+              <div class="metrics-list">
+                <div class="metric-bar-item">
+                  <div class="bar-header">
+                    <span>Clarity & Structure</span>
+                    <strong id="bar-clarity-val">100%</strong>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill fill-cyan" id="bar-clarity-fill" style="width: 100%;"></div>
+                  </div>
+                </div>
+
+                <div class="metric-bar-item">
+                  <div class="bar-header">
+                    <span>Spelling Accuracy</span>
+                    <strong id="bar-spelling-val">100%</strong>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill fill-purple" id="bar-spelling-fill" style="width: 100%;"></div>
+                  </div>
+                </div>
+
+                <div class="metric-bar-item">
+                  <div class="bar-header">
+                    <span>Grammar Compliance</span>
+                    <strong id="bar-grammar-val">100%</strong>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill fill-blue" id="bar-grammar-fill" style="width: 100%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- RECOMMENDATION BOX -->
+              <div class="recommendation-card">
+                <div class="rec-header">
+                  <span>💡 Key Recommendation</span>
+                </div>
+                <p id="analysis-recommendation">Your text is looking great! No critical errors detected.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 3: WRITING ASSISTANT -->
+      <section id="section-assistant" class="app-section">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">AI Writing Assistant</h1>
+            <p class="page-subtitle">Select a writing style and transform your text for impact, conciseness, or formality.</p>
+          </div>
+        </div>
+
+        <!-- WRITING MODES SELECTOR -->
+        <div class="mode-selector-card glass-card">
+          <label class="mode-label">Select Target Writing Mode:</label>
+          <div class="mode-pills" id="mode-pills-container">
+            <button class="mode-pill active" data-mode="professional">💼 Professional</button>
+            <button class="mode-pill" data-mode="academic">🎓 Academic</button>
+            <button class="mode-pill" data-mode="casual">💬 Casual</button>
+            <button class="mode-pill" data-mode="creative">🎨 Creative</button>
+            <button class="mode-pill" data-mode="email">📧 Email</button>
+            <button class="mode-pill" data-mode="resume">📄 Resume</button>
+          </div>
+        </div>
+
+        <div class="assistant-grid">
+          <!-- INPUT CARD -->
+          <div class="assistant-card glass-card">
+            <div class="card-header-flex">
+              <h3 class="card-title">Original Text</h3>
+              <button class="btn btn-ghost btn-xs" id="btn-assistant-sample">Load Assistant Sample</button>
+            </div>
+            <textarea id="assistant-input" class="assistant-textarea" placeholder="Paste your sentence or paragraph here to transform..." spellcheck="false"></textarea>
+
+            <div class="assistant-tools-header">Select AI Action:</div>
+            <div class="action-buttons-grid">
+              <button class="btn btn-action" id="btn-act-improve">
+                <span>🪄 Improve Writing</span>
+              </button>
+              <button class="btn btn-action" id="btn-act-shorter">
+                <span>✂️ Make Shorter</span>
+              </button>
+              <button class="btn btn-action" id="btn-act-professional">
+                <span>💼 Make Professional</span>
+              </button>
+              <button class="btn btn-action" id="btn-act-simplify">
+                <span>🧩 Simplify</span>
+              </button>
+              <button class="btn btn-action" id="btn-act-suggestions">
+                <span>💡 Suggestions</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- OUTPUT CARD -->
+          <div class="assistant-card glass-card output-card">
+            <div class="card-header-flex">
+              <h3 class="card-title">AI Transformed Output</h3>
+              <span class="mode-badge" id="active-mode-badge">Mode: Professional</span>
+            </div>
+
+            <div class="output-wrapper">
+              <div id="assistant-output" class="assistant-output-box">
+                <div class="output-placeholder">
+                  Select an action above to generate improved text.
+                </div>
+              </div>
+            </div>
+
+            <!-- METRICS SUMMARY BAR -->
+            <div class="assistant-metrics-bar">
+              <div class="asst-metric">
+                <span class="asst-val" id="asst-readability">Standard</span>
+                <span class="asst-lbl">Readability</span>
+              </div>
+              <div class="asst-metric">
+                <span class="asst-val" id="asst-sentences">0</span>
+                <span class="asst-lbl">Sentences</span>
+              </div>
+              <div class="asst-metric">
+                <span class="asst-val" id="asst-words">0</span>
+                <span class="asst-lbl">Words</span>
+              </div>
+              <div class="asst-metric">
+                <span class="asst-val" id="asst-avg-len">0</span>
+                <span class="asst-lbl">Avg Words/Sentence</span>
+              </div>
+            </div>
+
+            <div class="output-actions">
+              <button class="btn btn-secondary" id="btn-copy-assistant">
+                <span>📋 Copy Result</span>
+              </button>
+              <button class="btn btn-primary" id="btn-send-to-checker">
+                <span>✍️ Send to Grammar Checker</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 4: HISTORY / REPORT -->
+      <section id="section-history" class="app-section">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">History & Performance Analytics</h1>
+            <p class="page-subtitle">Track your checks, error trends, score progression, and past document reports.</p>
+          </div>
+          <button class="btn btn-danger btn-sm" id="btn-clear-history">
+            <span>🗑️ Clear History</span>
+          </button>
+        </div>
+
+        <!-- TOP STATS CARDS -->
+        <div class="stats-overview-grid">
+          <div class="stat-card glass-card">
+            <div class="stat-icon icon-purple">📝</div>
+            <div class="stat-info">
+              <span class="stat-value" id="hist-total-checks">0</span>
+              <span class="stat-title">Total Checks</span>
+            </div>
+          </div>
+
+          <div class="stat-card glass-card">
+            <div class="stat-icon icon-red">⚠️</div>
+            <div class="stat-info">
+              <span class="stat-value" id="hist-total-errors">0</span>
+              <span class="stat-title">Errors Found</span>
+            </div>
+          </div>
+
+          <div class="stat-card glass-card">
+            <div class="stat-icon icon-green">✅</div>
+            <div class="stat-info">
+              <span class="stat-value" id="hist-total-corrected">0</span>
+              <span class="stat-title">Errors Corrected</span>
+            </div>
+          </div>
+
+          <div class="stat-card glass-card">
+            <div class="stat-icon icon-blue">🏆</div>
+            <div class="stat-info">
+              <span class="stat-value" id="hist-avg-score">0%</span>
+              <span class="stat-title">Average Score</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ANALYTICS CHART CONTAINER -->
+        <div class="chart-card glass-card">
+          <div class="chart-header">
+            <h3 class="card-title">Writing Improvement Trend</h3>
+            <span class="chart-legend"><span class="dot-legend"></span> Score Progression (%)</span>
+          </div>
+          <div class="chart-container-inner" id="chart-svg-wrap">
+            <!-- Custom SVG Chart Rendered dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- HISTORY RECENT CHECKS LIST -->
+        <div class="history-list-card glass-card">
+          <div class="history-header">
+            <h3 class="card-title">Recent History Logs</h3>
+            <div class="search-wrap">
+              <input type="text" id="history-search-input" placeholder="Search saved checks..." class="search-input">
+            </div>
+          </div>
+
+          <div id="history-list-container" class="history-items-list">
+            <div class="empty-state">
+              <div class="empty-icon">📁</div>
+              <h4>No history recorded yet</h4>
+              <p>Run grammar checks to automatically save and track your document reports here!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ANALYSIS DETAIL MODAL -->
+  <div class="modal-backdrop" id="modal-analysis">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-item-title">Check Analysis Details</h3>
+        <button class="modal-close-btn" id="btn-close-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-item-body">
+        <!-- Filled dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-modal-close">Close</button>
+        <button class="btn btn-primary" id="btn-modal-restore">Restore to Checker</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
